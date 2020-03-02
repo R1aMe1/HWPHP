@@ -1,2 +1,2 @@
 Author: Anikushina Maria
-Running the program via the console (numOfWords)
+Running the program via the console (numOfWord)
