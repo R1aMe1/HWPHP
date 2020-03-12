@@ -1,12 +1,12 @@
 <?php
 
 function pdo (){
-    return new PDO('pgsql:host=localhost;port=5432;dbname=postgres;user=postgres password=postgres');
+    return new PDO('pgsql:host=localhost;port=5432;dbname=postgres;user=postgres; password=postgres');
 }
 function insert_uploaded_text ($content, $words_count, $data) {
     $pdo = pdo();
-    $prepare = $pdo->prepare("INSERT INTO uploaded_text(content, words_count, data ) VALUES ('$content', $words_count, '$data')");
-    $prepare->execute();
+    $prepare = $pdo->prepare("INSERT INTO uploaded_text(content, words_count, data ) VALUES (?,?,?)");
+    $prepare->execute([$content, $words_count, $data]);
 }
 function insert_word ($words, $data) {
     $pdo = pdo();
@@ -15,8 +15,8 @@ function insert_word ($words, $data) {
     $id_text = $str_select->fetch(PDO::FETCH_ASSOC);
     $id = $id_text["id"];
     foreach ($words as $k => $v) {
-        $prepare = $pdo->prepare("INSERT INTO word(text_id, word, count) VALUES ( '$id', '$k', '$v')");
-        $prepare->execute();
+        $prepare = $pdo->prepare("INSERT INTO word(text_id, word, count) VALUES (?,?,? )");
+        $prepare->execute([$id, $k, $v]);
     }
 }
 function select_uploaded_text () {
