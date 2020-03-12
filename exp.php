@@ -1,10 +1,11 @@
 <?php
 
+require 'text.php';
+
 function create($text) {
     $resol = '.csv';
     $dir = 'csv';
-    $date = date_create_from_format('U.u', microtime(true));
-    $name = date_format($date, "Y-m-d H-i-s-u");
+    $name = str_replace( ":","-", create_name());
     touch($dir . '\\' . $name . $resol);
     $file = fopen($dir . '\\' . $name . $resol, 'w+');
     fputs($file, chr(0xEF) . chr(0xBB) . chr(0xBF) );
