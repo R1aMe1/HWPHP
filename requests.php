@@ -1,7 +1,7 @@
 <?php
 
 function pdo (){
-    return new PDO('pgsql:host=localhost;port=5432;dbname=postgres;user=postgres; password=postgres');
+    return new PDO('pgsql:host=localhost; port=5432; dbname=postgres', 'postgres','postgres');
 }
 function insert_uploaded_text ($content, $words_count, $data) {
     $pdo = pdo();
